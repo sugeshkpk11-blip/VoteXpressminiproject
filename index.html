@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}VoteXpress - Online Voting{% endblock %}
+{% block content %}
+<section class="hero">
+    <div>
+        <p class="eyebrow">VOTEXPRESS • FAST • SECURE • TRANSPARENT</p>
+        <h1>Secure & Simple<br>Online Voting</h1>
+        <p>Register as a voter, securely cast one vote, and view election results.</p>
+        <div class="actions">
+            <a class="btn" href="{{ url_for('register') }}">Register as Voter</a>
+            <a class="btn secondary" href="{{ url_for('voter_login') }}">Voter Login</a>
+        </div>
+    </div>
+    <div class="hero-card">
+        <div class="big-icon">🗳️</div>
+        <h3>Election Portal</h3>
+        <p>One registered voter can cast only one vote.</p>
+    </div>
+</section>
+
+<div class="grid three">
+    <div class="card"><h3>👤 Registration</h3><p>Create a voter account using a unique Voter ID.</p></div>
+    <div class="card"><h3>🔐 Authentication</h3><p>Password-protected voter and administrator access.</p></div>
+    <div class="card"><h3>📊 Results</h3><p>Vote counts and winner are calculated automatically.</p></div>
+</div>
+{% endblock %}

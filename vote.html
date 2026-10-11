@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Cast Vote{% endblock %}
+{% block content %}
+<div class="page-head">
+    <div>
+        <p class="eyebrow">VOTER PORTAL</p>
+        <h2>Cast Your Vote</h2>
+        <p>Welcome, {{ voter['name'] }}.</p>
+    </div>
+</div>
+
+{% if voter['has_voted'] %}
+<div class="alert error">You have already voted. A second vote is not allowed.</div>
+{% else %}
+<form method="post" onsubmit="return confirm('Are you sure you want to cast this vote? You cannot vote again.');">
+    <div class="candidate-grid">
+    {% for c in candidates %}
+        <label class="candidate">
+            <input type="radio" name="candidate_id" value="{{ c['id'] }}" required>
+            <span class="symbol">{{ c['symbol'] }}</span>
+            <span>
+                <strong>{{ c['name'] }}</strong>
+                <small>{{ c['party'] }}</small>
+            </span>
+        </label>
+    {% endfor %}
+    </div>
+    <button class="btn vote-btn" type="submit">Submit Vote</button>
+</form>
+{% endif %}
+{% endblock %}

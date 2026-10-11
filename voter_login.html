@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Voter Login{% endblock %}
+{% block content %}
+<div class="form-card">
+    <h2>Voter Login</h2>
+    <p class="muted">Enter your Voter ID and password.</p>
+    <form method="post">
+        <label>Voter ID</label>
+        <input name="voter_id" required>
+
+        <label>Password</label>
+        <input type="password" name="password" required>
+
+        <button class="btn" type="submit">Login</button>
+    </form>
+    <p class="center">New voter? <a href="{{ url_for('register') }}">Register here</a></p>
+</div>
+{% endblock %}

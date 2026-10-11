@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="page-head">
+    <div>
+        <p class="eyebrow">ADMINISTRATOR</p>
+        <h2>Dashboard</h2>
+    </div>
+</div>
+
+<div class="stats">
+    <div class="stat"><span>Registered Voters</span><strong>{{ voter_count }}</strong></div>
+    <div class="stat"><span>Votes Cast</span><strong>{{ voted_count }}</strong></div>
+    <div class="stat"><span>Not Yet Voted</span><strong>{{ voter_count - voted_count }}</strong></div>
+</div>
+
+<div class="admin-grid">
+    <div class="card">
+        <h3>Add Candidate</h3>
+        <form method="post" action="{{ url_for('add_candidate') }}">
+            <label>Name</label>
+            <input name="name" required>
+            <label>Party</label>
+            <input name="party" required>
+            <label>Symbol</label>
+            <input name="symbol" required placeholder="Example: 🌳">
+            <button class="btn" type="submit">Add Candidate</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h3>Candidate List</h3>
+        {% for c in candidates %}
+        <div class="admin-candidate">
+            <span>{{ c['symbol'] }} <strong>{{ c['name'] }}</strong><br><small>{{ c['party'] }} • {{ c['vote_count'] }} votes</small></span>
+            <form method="post" action="{{ url_for('delete_candidate', candidate_id=c['id']) }}"
+                  onsubmit="return confirm('Delete this candidate?');">
+                <button class="danger" type="submit">Delete</button>
+            </form>
+        </div>
+        {% else %}
+        <p>No candidates.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<a class="btn secondary" href="{{ url_for('results') }}">View Results</a>
+{% endblock %}

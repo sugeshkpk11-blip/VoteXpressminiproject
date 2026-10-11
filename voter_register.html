@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Voter Registration{% endblock %}
+{% block content %}
+<div class="form-card">
+    <h2>Voter Registration</h2>
+    <p class="muted">Create your voting account.</p>
+    <form method="post">
+        <label>Voter ID</label>
+        <input name="voter_id" required placeholder="Example: VOTER001">
+
+        <label>Full Name</label>
+        <input name="name" required placeholder="Your name">
+
+        <label>Email</label>
+        <input type="email" name="email" required placeholder="you@example.com">
+
+        <label>Password</label>
+        <input type="password" name="password" required minlength="6">
+
+        <button class="btn" type="submit">Register</button>
+    </form>
+</div>
+{% endblock %}

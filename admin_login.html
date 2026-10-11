@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Admin Login{% endblock %}
+{% block content %}
+<div class="form-card">
+    <h2>Administrator Login</h2>
+    <p class="muted">Manage candidates and monitor the election.</p>
+    <form method="post">
+        <label>Username</label>
+        <input name="username" required>
+
+        <label>Password</label>
+        <input type="password" name="password" required>
+
+        <button class="btn" type="submit">Admin Login</button>
+    </form>
+</div>
+{% endblock %}

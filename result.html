@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Election Results{% endblock %}
+{% block content %}
+<div class="page-head">
+    <div>
+        <p class="eyebrow">LIVE COUNT</p>
+        <h2>Election Results</h2>
+        <p>Total votes cast: <strong>{{ total }}</strong></p>
+    </div>
+</div>
+
+<div class="results">
+{% for r in results %}
+    <div class="result-row">
+        <span class="result-symbol">{{ r['symbol'] }}</span>
+        <div class="result-name">
+            <strong>{{ r['name'] }}</strong>
+            <small>{{ r['party'] }}</small>
+        </div>
+        <strong class="votes">{{ r['vote_count'] }}</strong>
+    </div>
+{% else %}
+    <p>No candidates found.</p>
+{% endfor %}
+</div>
+
+{% if results %}
+    {% set max_votes = results[0]['vote_count'] %}
+    {% if max_votes > 0 %}
+        <div class="winner">
+            🏆 Winner:
+            {% for r in results if r['vote_count'] == max_votes %}
+                <strong>{{ r['name'] }}</strong>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endif %}
+{% endblock %}
